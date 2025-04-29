@@ -1,0 +1,32 @@
+<%- include('partials/head', { title: event.title }) %>
+
+<h1><%= event.title %></h1>
+<% if (event.image_url) { %>
+  <img src="<%= event.image_url %>" alt="<%= event.title %>" class="recipe-detail-image" />
+<% } %>
+
+<p>
+  <strong>Date:</strong> <%= event.event_date %><br/>
+  <% if (event.event_time) { %>
+    <strong>Time:</strong> <%= event.event_time %><br/>
+  <% } %>
+  <% if (event.location) { %>
+    <strong>Location:</strong> <%= event.location %><br/>
+  <% } %>
+</p>
+
+<% if (event.description) { %>
+  <section>
+    <h2>Description</h2>
+    <p><%= event.description %></p>
+  </section>
+<% } %>
+
+<a href="/events/<%= event.id %>/edit"><button>Edit</button></a>
+<form action="/events/<%= event.id %>/delete" method="post" style="display:inline">
+  <button type="submit">Delete</button>
+</form>
+<br/><br/>
+<a href="/events">← Back to Events</a>
+
+<%- include('partials/footer') %>

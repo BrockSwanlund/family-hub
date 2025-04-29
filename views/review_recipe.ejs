@@ -1,0 +1,47 @@
+<%- include('partials/head', { title: 'Review Recipe' }) %>
+
+<section class="edit-recipe-container">
+  <h1>Review & Confirm Recipe</h1>
+  <img src="<%= image_url %>" alt="Uploaded recipe" class="recipe-detail-image" />
+
+  <form action="/recipes" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="image">Change Photo (optional)</label>
+      <input type="file" id="image" name="image" accept="image/*" />
+      <input type="hidden" name="image_url" value="<%= image_url %>" />
+    </div>
+
+    <fieldset>
+      <legend>Basic Info</legend>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" value="<%= title %>" required />
+      </div>
+      <div class="form-group">
+        <label for="prep_time">Prep Time</label>
+        <input type="text" id="prep_time" name="prep_time" value="<%= prep_time %>" />
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Ingredients</legend>
+      <div class="form-group">
+        <textarea id="ingredients" name="ingredients" rows="5"><%= ingredients %></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Steps</legend>
+      <div class="form-group">
+        <textarea id="steps" name="steps" rows="6"><%= steps %></textarea>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit">Save Recipe</button>
+      <a href="/recipes" class="button">Cancel</a>
+    </div>
+  </form>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,20 @@
+<%- include('partials/head', { title: 'Upload Schedule Photo' }) %>
+
+<section class="edit-recipe-container">
+  <h1>Upload Schedule Photo</h1>
+  <form action="/events/upload" method="post" enctype="multipart/form-data">
+    <fieldset>
+      <legend>Select Photo</legend>
+      <div class="form-group">
+        <label for="image">Schedule Photo</label><br/>
+        <input type="file" id="image" name="image" accept="image/*" required />
+      </div>
+    </fieldset>
+    <div class="form-actions">
+      <button type="submit">Upload &amp; Auto‑Fill</button>
+      <a href="/events"><button type="button">Cancel</button></a>
+    </div>
+  </form>
+</section>
+
+<%- include('partials/footer') %>

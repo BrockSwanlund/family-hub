@@ -1,0 +1,21 @@
+<%- include('partials/head', { title: 'Dashboard' }) %>
+
+<h1>Welcome, <%= name %>!</h1>
+
+<ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/recipes">Recipes</a> </li>
+  <li><a href="/events">Calendar</a> </li>
+</ul>
+
+
+<!-- A decorative image in your dashboard -->
+<section>
+    <img
+      src="/images/assets/pine-forest.png"
+      alt="Scandinavian pine forest"
+      class="wide-image"
+    />
+  </section>
+  
+<%- include('partials/footer') %>

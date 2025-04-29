@@ -1,0 +1,17 @@
+<%- include('partials/head', { title: 'Upload Recipe Photo' }) %>
+
+<section class="edit-recipe-container">
+  <h1>Upload Recipe Photo</h1>
+  <form action="/recipes/new/upload" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="image">Photo of your recipe</label>
+      <input type="file" id="image" name="image" accept="image/*" required />
+    </div>
+    <div class="form-actions">
+      <button type="submit">Upload &amp; Auto‑Fill</button>
+      <a href="/recipes" class="button">Cancel</a>
+    </div>
+  </form>
+</section>
+
+<%- include('partials/footer') %>

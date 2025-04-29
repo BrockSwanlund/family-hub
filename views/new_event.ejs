@@ -1,0 +1,93 @@
+<%- include('partials/head', { title: 'Add Event' }) %>
+
+<section class="edit-recipe-container">
+  <h1>Add Event</h1>
+  <form action="/events" method="post">
+    <!-- Pass image_url through -->
+    <input type="hidden" name="image_url" value="<%= image_url || '' %>" />
+
+    <% if (image_url) { %>
+      <div class="current-image">
+        <p>Uploaded photo preview:</p>
+        <img src="<%= image_url %>" alt="Schedule photo" class="recipe-detail-image" />
+      </div>
+    <% } %>
+
+    <fieldset>
+      <legend>Basic Info</legend>
+      <div class="form-group">
+        <label for="title">Title</label><br/>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          required
+          value="<%= title || '' %>"
+          placeholder="Event title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="event_date">Date</label><br/>
+        <input
+          type="date"
+          id="event_date"
+          name="event_date"
+          required
+          value="<%= event_date || '' %>"
+        />
+      </div>
+      <div class="form-group">
+        <label for="event_time">Time</label><br/>
+        <input
+          type="time"
+          id="event_time"
+          name="event_time"
+          value="<%= event_time || '' %>"
+        />
+      </div>
+      <div class="form-group">
+        <label for="location">Location</label><br/>
+        <input
+          type="text"
+          id="location"
+          name="location"
+          value="<%= location || '' %>"
+          placeholder="e.g., Park, Home, Zoom"
+        />
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Description</legend>
+      <div class="form-group">
+        <textarea
+          id="description"
+          name="description"
+          rows="6"
+          placeholder="Details or notes"
+        ><%= description || '' %></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Image URL (if not uploading)</legend>
+      <div class="form-group">
+        <label for="image_url">Image URL</label><br/>
+        <input
+          type="url"
+          id="image_url"
+          name="image_url"
+          value="<%= image_url || '' %>"
+          placeholder="https://example.com/photo.png"
+        />
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit">Save Event</button>
+      <a href="/events"><button type="button">Cancel</button></a>
+    </div>
+  </form>
+</section>
+
+<%- include('partials/footer') %>

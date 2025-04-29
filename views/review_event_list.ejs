@@ -1,0 +1,44 @@
+<%- include('partials/head', { title: 'Review Events' }) %>
+
+<section class="edit-recipe-container">
+  <h1>Review & Confirm Events</h1>
+  <img src="<%= image_url %>" class="recipe-detail-image" />
+
+  <form action="/events/batch" method="post">
+    <input type="hidden" name="image_url" value="<%= image_url %>" />
+
+    <% events.forEach((ev, i) => { %>
+      <fieldset>
+        <legend>Event <%= i+1 %></legend>
+        <input type="hidden" name="events[<%= i %>][image_url]" value="<%= image_url %>"/>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" name="events[<%= i %>][title]" value="<%= ev.title %>" required/>
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" name="events[<%= i %>][event_date]" value="<%= ev.event_date %>"/>
+        </div>
+        <div class="form-group">
+          <label>Time</label>
+          <input type="time" name="events[<%= i %>][event_time]" value="<%= ev.event_time %>"/>
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" name="events[<%= i %>][location]" value="<%= ev.location %>"/>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea name="events[<%= i %>][description]"><%= ev.description %></textarea>
+        </div>
+      </fieldset>
+    <% }) %>
+
+    <div class="form-actions">
+      <button type="submit">Save All Events</button>
+      <a href="/events"><button type="button">Cancel</button></a>
+    </div>
+  </form>
+</section>
+
+<%- include('partials/footer') %>

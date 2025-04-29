@@ -1,0 +1,21 @@
+<%- include('../partials/head', { title: 'Manage Users' }) %>
+<h1>Users</h1>
+<table>
+  <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Admin</th><th>Action</th></tr></thead>
+  <tbody>
+    <% users.forEach(u => { %>
+      <tr>
+        <td><%= u.id %></td>
+        <td><%= u.name %></td>
+        <td><%= u.email %></td>
+        <td><%= u.is_admin ? '✅' : '❌' %></td>
+        <td>
+          <form method="post" action="/admin/users/<%= u.id %>/toggle">
+            <button type="submit">Toggle Admin</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+<%- include('../partials/footer') %>

@@ -1,0 +1,23 @@
+<%- include('partials/head', { title: 'Events' }) %>
+
+<h1>Events</h1>
+<a href="/events/upload"><button>Upload Schedule Photo</button></a>
+<a href="/events/new"><button>Add Event Manually</button></a>
+
+<% if (!events.length) { %>
+  <p>No events yet—upload a schedule photo or add one manually.</p>
+<% } else { %>
+  <ul>
+    <% events.forEach(ev => { %>
+      <li>
+        <a href="/events/<%= ev.id %>">
+          <strong><%= ev.title %></strong>
+        </a>
+        — <%= ev.event_date %> 
+        <% if (ev.event_time) { %>at <%= ev.event_time %><% } %>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<%- include('partials/footer') %>

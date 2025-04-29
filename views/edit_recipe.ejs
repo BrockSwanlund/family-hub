@@ -1,0 +1,88 @@
+<%- include('partials/head', { title: 'Edit Recipe: ' + recipe.title }) %>
+
+<section class="edit-recipe-container">
+  <h1>Edit Recipe</h1>
+  <form action="/recipes/<%= recipe.id %>/edit" method="post">
+    
+    <fieldset>
+      <legend>Basic Info</legend>
+      <div class="form-group">
+        <label for="title">Title</label><br/>
+        <input 
+          type="text" 
+          id="title" 
+          name="title" 
+          value="<%= recipe.title %>" 
+          required 
+          placeholder="E.g., Viking Honey-Glazed Bread"
+        />
+      </div>
+      <div class="form-group">
+        <label for="prep_time">Prep Time (minutes)</label><br/>
+        <input 
+          type="number" 
+          id="prep_time" 
+          name="prep_time" 
+          value="<%= recipe.prep_time || '' %>" 
+          min="0"
+          placeholder="e.g., 45"
+        />
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Ingredients (one per line)</legend>
+      <div class="form-group">
+        <textarea 
+          id="ingredients" 
+          name="ingredients" 
+          rows="10" 
+          required
+          placeholder="1 cup flour&#10;1/2 cup water&#10;2 tbsp honey"
+        ><%= recipe.ingredients %></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Steps (separate paragraphs)</legend>
+      <div class="form-group">
+        <textarea 
+          id="steps" 
+          name="steps" 
+          rows="12" 
+          required
+          placeholder="Mix flour and water to form a dough.&#10;&#10;Knead for 10 minutes.&#10;&#10;Let rest 30 minutes."
+        ><%= recipe.steps %></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Image (URL)</legend>
+      <div class="form-group">
+        <label for="image_url">Image URL</label><br/>
+        <input 
+          type="url" 
+          id="image_url" 
+          name="image_url" 
+          value="<%= recipe.image_url || '' %>" 
+          placeholder="https://example.com/image.jpg"
+        />
+      </div>
+      <% if (recipe.image_url) { %>
+        <div class="current-image">
+          <p>Current image preview:</p>
+          <img src="<%= recipe.image_url %>" alt="<%= recipe.title %>" />
+        </div>
+      <% } %>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit">Update Recipe</button>
+      <a href="/recipes/<%= recipe.id %>">
+        <button type="button">Cancel</button>
+      </a>
+    </div>
+  </form>
+</section>
+
+<%- include('partials/footer') %>

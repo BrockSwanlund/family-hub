@@ -1,0 +1,38 @@
+<%- include('partials/head', { title: 'Recipes' }) %>
+
+<h1>Recipes</h1>
+<a href="/recipes/new"><button>Create New Recipe</button></a>
+
+<div class="recipe-grid">
+  <% if (!recipes.length) { %>
+    <p>No recipes yet—be the first to add one!</p>
+  <% } else { %>
+    <% recipes.forEach(r => { %>
+      <div class="recipe-card">
+        <!-- Fallback to placeholder_midwest.png if no image_url -->
+        <img
+          src="<%= r.image_url || '/images/placeholder_midwest.png' %>"
+          alt="<%= r.title %>"
+        >
+
+        <div class="recipe-card-content">
+          <h2><%= r.title %></h2>
+          <div class="meta">
+            Prep: <%= r.prep_time ? r.prep_time + ' min' : '—' %> |
+            Added: <%= new Date(r.created_at).toLocaleDateString() %>
+          </div>
+          <p><%= r.steps.split('\n\n')[0].substring(0, 100) %>...</p>
+        </div>
+
+        <div class="recipe-card-actions">
+          <a href="/recipes/<%= r.id %>">View</a>
+          <form action="/recipes/<%= r.id %>/delete" method="post" onsubmit="return confirm('Delete this recipe?');">
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+</div>
+
+<%- include('partials/footer') %>

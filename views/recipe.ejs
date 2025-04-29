@@ -1,0 +1,39 @@
+<%- include('partials/head', { title: recipe.title }) %>
+
+<h1><%= recipe.title %></h1>
+
+<!-- Fallback to placeholder_midwest.png if no image_url -->
+<img
+  src="<%= recipe.image_url || '/images/placeholder_midwest.png' %>"
+  alt="<%= recipe.title %>"
+  class="recipe-detail-image"
+/>
+
+<p><strong>Prep Time:</strong>
+  <%= recipe.prep_time ? recipe.prep_time + ' minutes' : '—' %>
+</p>
+
+<section>
+  <h2>Ingredients</h2>
+  <ul>
+    <% recipe.ingredients.split('\n').forEach(item => { %>
+      <li><%= item %></li>
+    <% }) %>
+  </ul>
+</section>
+
+<section>
+  <h2>Steps</h2>
+  <% recipe.steps.split('\n\n').forEach(step => { %>
+    <p><%= step %></p>
+  <% }) %>
+</section>
+
+<a href="/recipes/<%= recipe.id %>/edit"><button>Edit</button></a>
+<form action="/recipes/<%= recipe.id %>/delete" method="post" style="display:inline">
+  <button type="submit">Delete</button>
+</form>
+<br/><br/>
+<a href="/recipes">← Back to Recipes</a>
+
+<%- include('partials/footer') %>
