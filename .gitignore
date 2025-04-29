@@ -1,12 +1,7 @@
-# Dependencies
+cat << 'EOF' > .gitignore
 node_modules/
-
-# Logs
-*.log
-
-# Uploaded media & temp
 public/uploads/
-
-# OS files
+*.log
 .DS_Store
 Thumbs.db
+EOF
