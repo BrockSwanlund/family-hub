@@ -11,7 +11,7 @@ const eventRoutes   = require('./routes/events');
 const adminRoutes   = require('./routes/admin');
 
 const app  = express();
-const PORT = process.env.PORT || 3000;
+
 
 // ─── Middleware ────────────────────────────────────────────────────────────────
 app.use(express.json());
@@ -160,9 +160,9 @@ app.use((req, res) => {
   res.status(404).render('404');
 });
 
-// ─── Start Server ─────────────────────────────────────────────────────────────
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running:
-  • Local:    http://localhost:${PORT}
-  • External: http://98.213.155.147:${PORT}`);
+// Start the server
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
+app.listen(PORT, HOST, () => {
+  console.log(`🚀 Server started on http://${HOST}:${PORT}`);
 });
